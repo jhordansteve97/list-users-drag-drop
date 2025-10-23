@@ -1,5 +1,5 @@
+import type { color } from "@/Interfaces";
 import clsx from "clsx";
-import type { color } from "@/interfaces";
 
 export const itemMenuStyle = (color: color) => {
   return clsx(

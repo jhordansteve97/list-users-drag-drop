@@ -1,4 +1,4 @@
-import type { color } from "@/interfaces"
+import type { color } from "@/Interfaces";
 import clsx from "clsx";
 
 interface HeaderTopbarStyleProps {

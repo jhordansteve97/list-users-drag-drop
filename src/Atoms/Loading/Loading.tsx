@@ -1,6 +1,6 @@
-import type { colorInput } from '@interfaces';
-import './loading.css';
+import type { colorInput } from '@/Interfaces';
 import clsx from 'clsx';
+import './loading.css';
 
 interface LoadingProps {
   variant?: "letters" | "spinner";

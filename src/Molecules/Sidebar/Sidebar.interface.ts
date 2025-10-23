@@ -1,4 +1,4 @@
-import type { ItemMenuProps } from "../ItemMenu/itemMenu.interface";
+import type { ItemMenuProps } from "@/Atoms/ItemMenu/itemMenu.interface";
 
 export interface SidebarProps {
   isSidebarOpen: boolean;

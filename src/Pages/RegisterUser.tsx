@@ -1,7 +1,7 @@
 import { useActionState, useState } from "react";
 import * as Yup from "yup";
 import { v4 as uuidv4 } from "uuid";
-import { Button, Input, Switch } from "@/Atoms";
+import { Button, Outlined, Switch } from "@/Atoms";
 import { useAlert } from "@/Atoms/Alert/useAlert";
 import { useDispatch } from "react-redux";
 import { addUser } from "@/store/userSlice";
@@ -106,19 +106,17 @@ export const RegisterUser = () => {
         />
         <form action={submitAction}>
           <div className="grid grid-cols-2 gap-10 mt-8 p-2.5">
-            <Input
+            <Outlined
               id="name"
               label="Nombre completo"
-              variant="outlined"
               error={!!state.errors.name}
               textField={state.errors.name}
               autoComplete="on"
               defaultValue=""
             />
-            <Input
+            <Outlined
               id="email"
               label="Correo electronico"
-              variant="outlined"
               error={!!state.errors.email}
               textField={state.errors.email}
               autoComplete="on"
@@ -126,35 +124,31 @@ export const RegisterUser = () => {
             />
             <Switch
               className="text-black"
-              variant="both"
               name="gender"
               labelLeft="Femenino"
               labelRight="Masculino"
               checked={value}
               onChange={setValue}
             />
-            <Input
+            <Outlined
               id="city"
               label="Ciudad"
-              variant="outlined"
               error={!!state.errors.city}
               textField={state.errors.city}
               autoComplete="on"
               defaultValue=""
             />
-            <Input
+            <Outlined
               id="state"
               label="Estado"
-              variant="outlined"
               error={!!state.errors.state}
               textField={state.errors.state}
               autoComplete="on"
               defaultValue=""
             />
-            <Input
+            <Outlined
               id="country"
               label="País"
-              variant="outlined"
               error={!!state.errors.country}
               textField={state.errors.country}
               autoComplete="on"

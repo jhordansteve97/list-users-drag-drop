@@ -1,4 +1,4 @@
-import type { color } from "@/interfaces";
+import type { color } from "@/Interfaces";
 
 /**
  * Topbar - Barra superior (Menu)
