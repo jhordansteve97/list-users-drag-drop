@@ -5,3 +5,30 @@ export const img: Img = {
   female:
     "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1061&amp;q=80",
 };
+
+export const inputs = [
+  {
+    id: "name",
+    label: "Nombre completo"
+  },
+  {
+    id: "email",
+    label: "Correo electrónico"
+  },
+  {
+    id: "gender",
+    label: "Genero"
+  },
+  {
+    id: "city",
+    label: "Ciudad"
+  },
+  {
+    id: "state",
+    label: "Estado"
+  },
+  {
+    id: "country",
+    label: "País"
+  },
+];

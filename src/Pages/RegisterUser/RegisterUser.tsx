@@ -8,7 +8,7 @@ import { Button, Outlined, Switch } from "@/Atoms";
 import { useAlert } from "@/Atoms/Alert/useAlert";
 import type { FormState, FormValues } from "./RegisterUser.interface";
 import { schema } from "./validate";
-import { img } from "./Register.dummy";
+import { img, inputs } from "./Register.dummy";
 
 
 export const RegisterUser = () => {
@@ -102,54 +102,27 @@ export const RegisterUser = () => {
         />
         <form action={submitAction}>
           <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-10 mt-8 p-2.5">
-            <Outlined
-              id="name"
-              label="Nombre completo"
-              error={!!state.errors.name}
-              textField={state.errors.name}
-              autoComplete="on"
-              defaultValue=""
-            />
-            <Outlined
-              id="email"
-              label="Correo electronico"
-              error={!!state.errors.email}
-              textField={state.errors.email}
-              autoComplete="on"
-              defaultValue=""
-            />
-            <Switch
-              className="text-black"
-              name="gender"
-              labelLeft="Femenino"
-              labelRight="Masculino"
-              checked={value}
-              onChange={setValue}
-            />
-            <Outlined
-              id="city"
-              label="Ciudad"
-              error={!!state.errors.city}
-              textField={state.errors.city}
-              autoComplete="on"
-              defaultValue=""
-            />
-            <Outlined
-              id="state"
-              label="Estado"
-              error={!!state.errors.state}
-              textField={state.errors.state}
-              autoComplete="on"
-              defaultValue=""
-            />
-            <Outlined
-              id="country"
-              label="País"
-              error={!!state.errors.country}
-              textField={state.errors.country}
-              autoComplete="on"
-              defaultValue=""
-            />
+            {inputs.map((item) => item.id !== "gender" ? (
+              <Outlined
+                key={item.id}
+                id={item.id}
+                label={item.label}
+                error={!!state.errors[item.id]}
+                textField={state.errors[item.id]}
+                autoComplete="on"
+                defaultValue=""
+              />
+            ) : (
+              <Switch
+                key={item.id}
+                className="text-black"
+                name="gender"
+                labelLeft="Femenino"
+                labelRight="Masculino"
+                checked={value}
+                onChange={setValue}
+              />
+            ))}
           </div>
           <div className="flex justify-center mt-8">
             <div className="w-[80%]">
