@@ -2,6 +2,7 @@
   "name": "users-app",
   "private": true,
   "version": "0.0.0",
+  "author": "Steve Jhordan Duran Ballesteros",
   "type": "module",
   "scripts": {
     "dev": "vite",
