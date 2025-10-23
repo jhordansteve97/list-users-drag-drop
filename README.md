@@ -5,6 +5,8 @@ Este proyecto es una prueba técnica que consiste en crear una lista de usuarios
 
 Se utilizó **Redux** para manejar el estado global de la aplicación de manera eficiente, especialmente útil para aplicaciones con estados complejos y grandes. Además, Redux permite la persistencia del estado y facilita la depuración mediante Redux DevTools.
 
+[Demo](https://list-users-drag-drop.vercel.app/)
+
 ## Características
 
 - Obtención de usuarios desde una API externa.
@@ -28,3 +30,5 @@ Se utilizó **Redux** para manejar el estado global de la aplicación de manera 
 3. Levanta el proyecto en modo desarrollo:
 `npm run dev`
 
+>[!NOTE]
+> Es necesario agregar **.env** de lo contrario no agregara los usuarios.
