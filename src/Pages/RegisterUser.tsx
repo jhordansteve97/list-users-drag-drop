@@ -98,14 +98,14 @@ export const RegisterUser = () => {
 
   return (
     <div className="w-full h-full flex justify-center items-center">
-      <div className="bg-paper dark:bg-darkpaper w-[700px] h-[500px] rounded-2xl shadow-2xl p-2.5">
+      <div className="bg-paper dark:bg-darkpaper lg:w-[700px] md:w-auto lg:h-[500px] md:h-auto rounded-2xl shadow-2xl p-2.5">
         <img
           className="w-[145px] h-[145px] rounded-full border-15 border-background dark:border-darkbackground m-auto mt-[-73px]"
           src={img[value ? "male" : "female"]}
           alt="avatar"
         />
         <form action={submitAction}>
-          <div className="grid grid-cols-2 gap-10 mt-8 p-2.5">
+          <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-10 mt-8 p-2.5">
             <Outlined
               id="name"
               label="Nombre completo"
