@@ -1,34 +1,14 @@
+import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router";
-import { FaUserFriends } from "react-icons/fa";
-import logo from "../assets/logo.png";
-import { Dashboard } from "@templates";
-import type { ItemMenuProps } from "@/Atoms/ItemMenu/itemMenu.interface";
-import { useUser } from "@/Hooks";
-import { addUser } from "@/store/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import { useEffect, useState } from "react";
-import { Loading } from "@/Atoms";
 import type { RootState } from "@/store/store";
-
-const optionsSidebar: ItemMenuProps[] = [
-  {
-    label: "Usuarios",
-    icon: <FaUserFriends />,
-    options: [
-      {
-        id: "List",
-        to: "/",
-        label: "Lista de usuarios",
-      },
-      {
-        id: "RegisterUser",
-        to: "/register",
-        label: "Registar Usuario",
-      },
-    ],
-  },
-];
+import { addUser } from "@/store/userSlice";
+import { useUser } from "@/Hooks";
+import { Loading } from "@/Atoms";
+import { Dashboard } from "@templates";
+import { optionsSidebar } from "./Home.dummy";
+import logo from "../../assets/logo.png";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -70,6 +50,7 @@ export const Home = () => {
       );
     }
   }, [general, error, userData, dispatch]);
+
   return (
     <div>
       <Dashboard

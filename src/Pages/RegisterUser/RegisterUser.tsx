@@ -1,59 +1,51 @@
 import { useActionState, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import { v4 as uuidv4 } from "uuid";
+import { addUser } from "@/store/userSlice";
+import type { RootState } from "@/store/store";
 import { Button, Outlined, Switch } from "@/Atoms";
 import { useAlert } from "@/Atoms/Alert/useAlert";
-import { useDispatch } from "react-redux";
-import { addUser } from "@/store/userSlice";
+import type { FormState, FormValues } from "./RegisterUser.interface";
+import { schema } from "./validate";
+import { img } from "./Register.dummy";
 
-interface Img {
-  male: string;
-  female: string;
-}
-
-const schema = Yup.object({
-  name: Yup.string().required("El nombre es obligatorio"),
-  email: Yup.string()
-    .email("Correo inválido")
-    .required("El correo es obligatorio"),
-  city: Yup.string().required("La Ciudad es obligatorio"),
-  state: Yup.string().required("El estado es obligatorio"),
-  country: Yup.string().required("El país es obligatorio"),
-});
-
-type FormValues = Yup.InferType<typeof schema>;
-
-interface FormState {
-  message: string;
-  errors: Record<string, string>;
-}
 
 export const RegisterUser = () => {
   const { addAlert } = useAlert();
   const dispatch = useDispatch();
+  const { general, selected } = useSelector((state: RootState) => state.users);
   const [value, setValue] = useState(false);
-  const img: Img = {
-    male: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80",
-    female:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1061&amp;q=80",
-  };
 
   const [state, submitAction, isPending] = useActionState<FormState, FormData>(
-    async (prevState, formData) => {
+    async (_, formData) => {
       try {
-        console.log(prevState);
-
         const values = {
           name: formData.get("name") as string,
           email: formData.get("email") as string,
           city: formData.get("city") as string,
           state: formData.get("state") as string,
-          country: formData.get("state") as string,
+          country: formData.get("country") as string,
         };
 
         await schema.validate(values, { abortEarly: false });
 
-        addAlert("Formulario enviado correctamente", "success");
+        const userGeneralExists = general.some(
+          (user) => user.email.toLowerCase() === values.email.toLowerCase()
+        );
+
+        const userSelectedExists = selected.some(
+          (user) => user.email.toLowerCase() === values.email.toLowerCase()
+        );
+
+        if (userGeneralExists || userSelectedExists) {
+          addAlert("El usuario ya existe", "error");
+          setValue(false);
+          return {
+            message: "El usuario ya existe",
+            errors: {},
+          };
+        }
 
         dispatch(
           addUser({
@@ -67,6 +59,10 @@ export const RegisterUser = () => {
             country: values.country,
           })
         );
+
+        setValue(false);
+
+        addAlert("Usuario registrado correctamente", "success");
 
         return {
           message: "Formulario enviado correctamente",
@@ -98,7 +94,7 @@ export const RegisterUser = () => {
 
   return (
     <div className="w-full h-full flex justify-center items-center">
-      <div className="bg-paper dark:bg-darkpaper lg:w-[700px] md:w-auto lg:h-[500px] md:h-auto rounded-2xl shadow-2xl p-2.5">
+      <div className="bg-paper dark:bg-darkpaper lg:w-[700px] md:w-auto h-auto rounded-2xl shadow-2xl p-2.5 pb-6">
         <img
           className="w-[145px] h-[145px] rounded-full border-15 border-background dark:border-darkbackground m-auto mt-[-73px]"
           src={img[value ? "male" : "female"]}

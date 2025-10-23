@@ -61,14 +61,14 @@ export const ListUsers = () => {
   };
 
   return (
-    <div className="flex lg:justify-center">
+    <div className="flex justify-center">
       {general.length > 0 && (
         <DragDropContext
           onDragEnd={onDragEnd}
           onDragStart={onDragStart}
           onDragUpdate={onDragUpdate}
         >
-          <div className="gap-5 flex lg:flex-row md:flex-col sm:flex-col">
+          <div className="gap-5 grid lg:grid-cols-2 md:grid-cols-1">
             <Droppable droppableId="general">
               {(provided, snapshot) => (
                 <div
